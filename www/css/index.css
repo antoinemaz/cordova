@@ -1,0 +1,35 @@
+/* Menu */
+.snapjs-right .snap-drawer-left {
+    display: block;
+    right: 0;
+    left: auto;
+}
+
+.snapjs-right .snap-drawer-right {
+    display: none;
+}
+
+#content {
+    background: white;
+}
+
+#open-left {
+  background: url(img/burger.png) center center no-repeat;
+  display: block;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  z-index: 10;
+}
+
+#open-left img{
+  margin-top: 3px;  
+}
+
+.snap-drawer-left{
+  background: #b2b2b2 none repeat scroll 0 0;
+}
+
+.formInfos{
+  margin-top: 100px;
+}

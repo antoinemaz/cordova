@@ -1,0 +1,22 @@
+<div ng-controller="infoCtrl">
+
+	<form class="input-group formInfos">
+
+		  <div ng-show="succes">Sauvegardé</div>
+
+		  <div class="input-row">
+		    <label>Nom</label>
+		    <input ng-model="nom" type="text" placeholder="Dupont">
+		  </div>
+		  <div class="input-row">
+		    <label>Prénom</label>
+		    <input ng-model="prenom" type="text" placeholder="Jean">
+		  </div>
+		  <div class="input-row">
+		    <label>Age</label>
+		    <input ng-model="age" type="text" placeholder="25">
+		  </div>
+		  <button type="submit" ng-click="saveData()" class="btn btn-primary btn-block">Enregistrer</button>
+	</form>
+
+</div>

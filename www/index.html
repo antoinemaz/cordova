@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html ng-app="testApp">
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/jquery.sidr.light.css">
+        <link rel="stylesheet" type="text/css" href="css/ratchet.min.css">
+        <link rel="stylesheet" type="text/css" href="css/snap.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <meta charset="utf-8">
+        <title>Hello World</title>
+    </head>
+    <body>
+
+        <div class="snap-drawers">
+            <div class="snap-drawer snap-drawer-left">
+                <div>
+                    <ul>
+                        <li><a href="#/info">Infos</a></li>
+                       <li><a href="#/depense">Liste des dépenses</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="content" class="snap-content">
+            <header class="bar bar-nav">
+                 <h1 class="title">Title</h1>
+                  <a href="#menu" id="open-left">
+                    <img src="img/burger.png" />
+                  </a>
+            </header>
+
+            <!-- L'ensemble des vues seront regroupées à ce niveau là -->
+            <div ng-view></div>
+
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/ratchet.min.js"></script>
+
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-route.js"></script>
+
+        <script type="text/javascript" src="js/snap.js"></script>
+
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>
