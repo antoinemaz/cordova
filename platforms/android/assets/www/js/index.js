@@ -34,6 +34,8 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         
+        /* INITIALISATION DE LA BASE DE DONNEES */    
+        
         var db = window.openDatabase("test", "1.0", "Test DB", 5000000);
         db.transaction(populateDB, errorCB, successCB);
 
@@ -58,9 +60,8 @@ app.initialize();
 // Populate the database
 //
 function populateDB(tx) {
-    tx.executeSql('DROP TABLE IF EXISTS INFO');
     tx.executeSql('CREATE TABLE IF NOT EXISTS INFO (id, nom, prenom, age)');
-    tx.executeSql('INSERT INTO INFO (id, nom, prenom, age) VALUES (1, "Maze Base", "Anto Base", "24")');
+    tx.executeSql('INSERT OR IGNORE INTO INFO (id, nom, prenom, age) VALUES (1, "Maze Base", "Anto Base", "24")');
 }
 
 // Transaction error callback

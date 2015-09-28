@@ -51,7 +51,7 @@ listControllers.controller('infoCtrl', ['$scope', 'InfoService', function ($scop
 
     // On appelle la méthode getUserInfos de notre services, une fois que le traitement de cette méthode est fini, 
     // On appelle le callback de succès de la promise (explication dans le service InfoService)
-    InfoService.getUserInfos().then(function(infos){;
+    InfoService.getUserInfos().then(function(infos){
         // Mis à jour de la vue avec les infos de l'utilisateur
         $scope.nom = infos.nom;
         $scope.prenom = infos.prenom;
@@ -61,7 +61,10 @@ listControllers.controller('infoCtrl', ['$scope', 'InfoService', function ($scop
 	$scope.succes = false;
 
 	$scope.saveData = function() {
-		$scope.succes = true;
+
+    InfoService.updateInfosUser($scope.nom, $scope.prenom, $scope.age).then(function(success){
+          $scope.succes = true;
+    });
 	};
 
 }]);
@@ -86,7 +89,7 @@ services.factory('InfoService', function($q) {
     // EN JS : c'est asynchrone, cad, que si on appelle une fonction, on attend pas son retour pour continuer la suite du programme.
     // Dans notre cas, le problème était le suivant : les informations en bases n'avaient pas le temps d'être récupérées, du coup, la variable "infos"
     // du controlleur était vide, et on avait pas d'info. Avec la mise en place du "promise", on est sûr de récupérer les infos, pour ensuite faire un traitement
-    // a postériori, avecl l'utilisation de ma méthode "then" dans le controlleur
+    // a postériori, avecl l'utilisation de la méthode "then" dans le controlleur
     var deferred = $q.defer(); 
 
     // Cordova met à disposition une API afin de stocker une BDD dans la le navigateur du smartphone.
@@ -104,6 +107,21 @@ services.factory('InfoService', function($q) {
     // On renvoie la valeur de la promesse (envoyé grâce au deffered)
     return deferred.promise;
   };
+
+    this.updateInfosUser = function(nom, prenom, age){
+
+    var deferred = $q.defer(); 
+
+    var db = window.openDatabase("test", "1.0", "Test DB", 5000000);
+
+    db.transaction(function(tx){
+
+      tx.executeSql('UPDATE INFO SET nom=?, prenom=?, age=? WHERE id=1', [nom, prenom, age]);
+      deferred.resolve("Success");
+    });
+    return deferred.promise;
+  };
+
 
   // On retourne l'objet InfoService
   return this;
